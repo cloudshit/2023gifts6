@@ -1,13 +1,11 @@
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
-
 metadata:
   name: skills-cluster
   region: ap-northeast-2
-  version: '1.27'
-
-iam:
-  withOIDC: true
+  version: "1.27"
+  tags:
+    karpenter.sh/discovery: skills-cluster
 
 vpc:
   subnets:
@@ -19,12 +17,31 @@ vpc:
       ap-northeast-2c:
         id: subnet-03f923bc7f2ab3791
 
+iam:
+  withOIDC: true
+  serviceAccounts:
+  - metadata:
+      name: karpenter
+      namespace: karpenter
+    roleName: skills-cluster-karpenter
+    attachPolicyARNs:
+      - arn:aws:iam::790946953677:policy/KarpenterControllerPolicy-skills-cluster
+    roleOnly: true
+
+iamIdentityMappings:
+- arn: "arn:aws:iam::790946953677:role/KarpenterNodeRole-skills-cluster"
+  username: system:node:{{EC2PrivateDNSName}}
+  groups:
+  - system:bootstrappers
+  - system:nodes
+
 managedNodeGroups:
-  - name: skills-nodegroup
-    minSize: 3
+  - instanceType: m5.large
+    amiFamily: AmazonLinux2
+    name: skills-cluster-ng
     desiredCapacity: 3
+    minSize: 3
     maxSize: 16
-    instanceType: c5.large
     privateNetworking: true
     iam:
       withAddonPolicies:

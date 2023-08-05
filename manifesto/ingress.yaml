@@ -18,6 +18,20 @@ spec:
   rules:
   - http:
       paths:
+      - path: /allowlist
+        pathType: Prefix
+        backend:
+          service:
+            name: allowlist
+            port:
+              number: 8080
+      - path: /event
+        pathType: Prefix
+        backend:
+          service:
+            name: allowlist
+            port:
+              number: 8080
       - path: /
         pathType: Prefix
         backend:

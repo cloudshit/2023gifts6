@@ -82,6 +82,8 @@ resource "aws_instance" "bastion" {
     chmod 700 get_helm.sh
     ./get_helm.sh
 
-    yum install -y jq curl
+    yum install -y jq curl docker
+    usermod -aG docker ec2-user
+    systemctl enable --now docker
   EOF
 }

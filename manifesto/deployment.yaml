@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: 790946953677.dkr.ecr.ap-northeast-2.amazonaws.com/skills-ecr:latest
+        image: 790946953677.dkr.ecr.ap-northeast-2.amazonaws.com/skills-user:latest
         env:
           - name: DB_WRITE_HOST
             value: skills-db.cluster-cadxb1cncc5b.ap-northeast-2.rds.amazonaws.com
@@ -30,5 +30,52 @@ spec:
             value: 'GGdAz|vruMDs}:+fCd*6{aEEHw{~'
           - name: DB_PORT
             value: '5432'
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: allowlist
+  labels:
+    app: allowlist
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: allowlist
+  template:
+    metadata:
+      labels:
+        app: allowlist
+    spec:
+      containers:
+      - name: allowlist
+        image: 790946953677.dkr.ecr.ap-northeast-2.amazonaws.com/skills-allowlist:latest
+        env:
+          - name: GROUP_ID
+            value: 
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event
+  labels:
+    app: event
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: event
+  template:
+    metadata:
+      labels:
+        app: event
+    spec:
+      containers:
+      - name: event
+        image: 790946953677.dkr.ecr.ap-northeast-2.amazonaws.com/skills-event:latest
         ports:
         - containerPort: 8080

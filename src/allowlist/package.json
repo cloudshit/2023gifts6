@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@aws-sdk/client-ec2": "^3.385.0",
+    "fastify": "^4.21.0"
+  }
+}
