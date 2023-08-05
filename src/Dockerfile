@@ -14,4 +14,4 @@ RUN pip3 install -r requirements.txt
 
 ADD * /app/
 
-CMD ["python3", "user.pyc"]
+CMD ["python3", "user-1.0.pyc"]
