@@ -32,6 +32,13 @@ spec:
             value: '5432'
         ports:
         - containerPort: 8080
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -57,6 +64,13 @@ spec:
             value: 
         ports:
         - containerPort: 8080
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -79,3 +93,10 @@ spec:
         image: 790946953677.dkr.ecr.ap-northeast-2.amazonaws.com/skills-event:latest
         ports:
         - containerPort: 8080
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
