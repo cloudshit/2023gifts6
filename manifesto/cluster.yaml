@@ -26,7 +26,11 @@ iam:
     roleName: skills-cluster-karpenter
     attachPolicyARNs:
       - arn:aws:iam::790946953677:policy/KarpenterControllerPolicy-skills-cluster
-    roleOnly: true
+  - metadata:
+      name: allowlist
+    roleName: skills-allowlist-role
+    attachPolicyARNs:
+      - arn:aws:iam::790946953677:policy/skills-allowlist
 
 iamIdentityMappings:
 - arn: "arn:aws:iam::790946953677:role/KarpenterNodeRole-skills-cluster"
