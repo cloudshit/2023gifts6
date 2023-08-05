@@ -12,6 +12,6 @@ ADD package.json /app
 
 RUN npm i
 
-RUN * /app/
+ADD * /app/
 
 CMD ["node", "main.js"]
