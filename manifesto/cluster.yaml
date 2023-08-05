@@ -17,6 +17,13 @@ vpc:
       ap-northeast-2c:
         id: subnet-0e7dd6e312bf0a3e7
 
+privateCluster:
+  enabled: true
+  additionalEndpointServices:
+    - autoscaling
+    - cloudformation
+    - logs
+
 iam:
   withOIDC: true
   serviceAccounts:
