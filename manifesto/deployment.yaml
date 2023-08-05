@@ -27,7 +27,7 @@ spec:
           - name: DB_USER
             value: skills
           - name: DB_PASSWORD
-            value: 'GGdAz|vruMDs}:+fCd*6{aEEHw{~'
+            value: '6]:<##V>UG0L25wAI?%qD[S4t+*&'
           - name: DB_PORT
             value: '5432'
         ports:
